@@ -237,7 +237,7 @@ impl TryInto<DeployAccountTransactionAPI> for &Transaction {
                     )?),
                 })
             }
-            _ => Err(StarknetApiError::OutOfRange { string: String::from("InvalidTransactionType") }),
+            _ => Err(StarknetApiError::InvalidTransactionType),
         }
     }
 }
@@ -295,14 +295,14 @@ impl TryInto<InvokeTransactionAPI> for &Transaction {
                     )),
                 })),
                 InvokeTransaction::V0(_) => {
-                    Err(StarknetApiError::OutOfRange { string: String::from("InvalidTransactionType") })
+                    Err(StarknetApiError::InvalidTransactionType)
                 }
             },
             Transaction::Declare(_declare_tx) => {
-                Err(StarknetApiError::OutOfRange { string: String::from("InvalidTransactionType") })
+                Err(StarknetApiError::InvalidTransactionType)
             }
             Transaction::DeployAccount(_deploy_account_tx) => {
-                Err(StarknetApiError::OutOfRange { string: String::from("InvalidTransactionType") })
+                Err(StarknetApiError::InvalidTransactionType)
             }
         }
     }
@@ -343,7 +343,7 @@ impl TryInto<DeclareTransactionAPI> for &Transaction {
                     );
                 })
             }
-            _ => Err(StarknetApiError::OutOfRange { string: String::from("InvalidTransactionType") }),
+            _ => Err(StarknetApiError::InvalidTransactionType),
         }
     }
 }
